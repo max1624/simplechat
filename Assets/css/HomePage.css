@@ -1,0 +1,40 @@
+h1 {
+	text-align: center;
+}
+.container {
+	width: 100%;
+	height: 100%;
+}
+.container .message_container {
+	height: 517px;
+	background-color: #c6e6f7;
+	border:solid;
+	border-radius: 40px 40px 0 0;
+	border-width:1px;
+	border-color: #2e4c5c;
+}
+.container .message_input {
+	height: 97px;
+	width: 100%;
+    position: relative;
+    width:100%;
+    padding-bottom: 20px;
+    display: flex;
+
+}
+.container .message_input .user_message {
+	width:80%;
+	margin-bottom: 6px;
+}
+.container .message_input .send_message {
+	width:20%;
+}
+.container .message_input .user_message .user_message_input {
+	width:100%;
+	height: 100%;
+
+}
+.container .message_input .send_message .send_button{
+	width:100%;
+	height: 100%;
+}
