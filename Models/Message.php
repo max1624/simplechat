@@ -14,6 +14,6 @@ class Message extends \App\Db {
 	}
 	public function getMessages()
 	{
-		return $this->execute('SELECT * FROM `messages`');
+		return $this->execute("SELECT * FROM `$this->table`");
 	}
 }

@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-use Models\Message as Message;
+use Models\Message;
 
 class Api extends \App\Controller
 {
@@ -12,13 +12,25 @@ class Api extends \App\Controller
     {
     	if($this->is_ajax()) {
 	    	if(isset($_POST) && $_POST) {
-	    		if($_POST["data"]) {
+	    		if($_POST["data"] && $_POST['author_id']) {
 	    			$this->message = new Message();
-					 return json_encode($this->message->saveMessage($_POST['data'], 1));
+	    			$this->message->saveMessage($_POST['data'], $_POST['author_id']);
+					 return json_encode(true);
 	    		}
+	    		else
+	    			return false;
 	    	}
     	}
     }
+
+	public function getMessages()
+	{
+		if($this->is_ajax()) {
+			$this->message = new Message();
+			return json_encode($this->message->getMessages());
+		}
+		return false;
+	}
 
     // Checking if it is AJAX Request
 	public function is_ajax() {

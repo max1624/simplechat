@@ -38,7 +38,7 @@ class Db
     {
 
         if(is_null($params)){
-            $stmt = $this->pdo->prepare($query)->execute();
+            $stmt = $this->pdo->query($query);
             return $stmt->fetchAll();
         }
         $stmt = $this->pdo->prepare($query);

@@ -7,9 +7,8 @@
 <body>
 	<div class="container">
 		<div class="wrapper">
-			<div><h1>402 PAYMENT REQIRED CHAT</h1></div>
-			<div class="message_container">
-
+			<div><h1>402 PAYMENT REQUIRED CHAT</h1></div>
+			<div class="message_container" id="message_container">
 			</div>
 			<div class="message_input">
 				<div class="user_message">
@@ -23,5 +22,6 @@
 	</div>	
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 <script rel="text/javascript" src="../Assets/js/HomePage.js"></script>
 </html>

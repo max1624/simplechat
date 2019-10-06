@@ -6,12 +6,36 @@ h1 {
 	height: 100%;
 }
 .container .message_container {
+	overflow-y: scroll hidden;
 	height: 517px;
 	background-color: #c6e6f7;
 	border:solid;
 	border-radius: 40px 40px 0 0;
 	border-width:1px;
 	border-color: #2e4c5c;
+}
+.container .message_container .not_user_message {
+    margin-top: 23px;
+    margin-left: 18px;
+    text-align: center;
+    border:solid;
+    border-width:0px;
+    border-radius: 10px 10px 10px 0px;
+	background-color: #328ab3;
+	width: 40%;
+	height: 30px;
+}
+.container .message_container .user_message {
+    margin-top: 23px;
+    margin-left: 18px;
+    text-align: center;
+    border:solid;
+    border-width:0px;
+    border-radius: 10px 10px 0px 10px;
+    margin-left: auto;
+	background-color: #328ab3;
+	width: 40%;
+	height: 30px;
 }
 .container .message_input {
 	height: 97px;
