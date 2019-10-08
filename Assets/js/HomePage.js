@@ -4,10 +4,10 @@ if(localStorage.getItem('author_id') !== null) {
 	author_id = Math.random() * (10000 - 1) + 1;
 	localStorage.setItem('author_id', author_id);
 }
-sendButton = document.getElementById('send_button');
+
 $( document ).ready(function(){
-	$( "message_container" ).scroll();
-	setInterval(getMessages, 2000);
+	getMessages();
+	gotoBottom('message_container'); 
 	$(document).keypress(function(e){
 	    if (e.which == 13){
 	        $("#send_button").click();
@@ -15,10 +15,14 @@ $( document ).ready(function(){
 	});
 });
 
+setInterval(getMessages, 2000);
+
+sendButton = document.getElementById('send_button');
 sendButton.onclick = function() {
 	messageToSend = document.getElementById('your_message').value;
 	messageToSend = messageToSend.trim();
 	sendMessage(messageToSend, author_id);
+	gotoBottom('message_container');
 }
 
 function sendMessage(message, author_id) {
@@ -31,8 +35,9 @@ function sendMessage(message, author_id) {
 			console.log('Failed to send message');  
       	},   
 	});
-	getMessages();
+
 	$('#your_message').val('');
+	 
 }
 
 function getMessages()
@@ -43,25 +48,29 @@ function getMessages()
 		datatype: 'json',
       	success: function(data){
 			messages = JSON.parse(data);
-			if(messages) {
-				var messageContainer = document.getElementById('message_container');
-				messagesDiv = messageContainer.children;
-				difference = messages.length - messagesDiv.length;
-				for(var i = messagesDiv.length; i < messages.length; i++) {
-					var messageDiv = document.createElement('div');
-					if(messages[i]['author_id'] == author_id) {
-						messageDiv.className += 'user_message';
-					} else {
-						messageDiv.className += 'not_user_message';
-					}
-					messageDiv.id = messages[i]['id'];
-					messageDiv.innerHTML = messages[i]['message'];
-					messageContainer.appendChild(messageDiv);
-				}
-			}          
+          	showMessages(messages);
       	},
-      	error:function(){
-			console.log('Failed to send message');  
-      	}   
 	}); 
+	
+}
+function gotoBottom(id){
+   var element = document.getElementById(id);
+   element.scrollTop = element.scrollHeight;
+}
+function showMessages(messages) {
+	if(messages) {
+		var messageContainer = document.getElementById('message_container');
+		messagesDiv = messageContainer.children;
+		for(var i = messagesDiv.length; i < messages.length; i++) {
+			var messageDiv = document.createElement('div');
+			if(messages[i]['author_id'] == author_id) {
+				messageDiv.className += 'user_message';
+			} else {
+				messageDiv.className += 'not_user_message';
+			}
+			messageDiv.id = messages[i]['id'];
+			messageDiv.innerHTML = messages[i]['message'];
+			messageContainer.appendChild(messageDiv);
+		}
+	}
 }
