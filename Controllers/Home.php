@@ -4,13 +4,13 @@ namespace Controllers;
 
 class Home extends \App\Controller
 {
-	public function index ($params)
+	public static function index ($params)
     {
-        return $this->render('HomePage');
+        return self::render('HomePage');
     }
 
-    public function test()
+    public static function renderError404()
     {
-    	return json_decode('asd');
+    	return self::render('error404');
     }
 }

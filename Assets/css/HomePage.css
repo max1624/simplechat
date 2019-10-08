@@ -6,7 +6,7 @@ h1 {
 	height: 100%;
 }
 .container .message_container {
-	overflow-y: scroll hidden;
+	overflow-y: scroll;
 	height: 517px;
 	background-color: #c6e6f7;
 	border:solid;

@@ -14,7 +14,8 @@ class App
     {
         spl_autoload_register(['static','loadClass']);
         static::bootstrap();
-        //set_exception_handler(['App','handleException']);
+
+        set_exception_handler(['App','handleException']);
 
     }
 
@@ -37,7 +38,7 @@ class App
     public function handleException (Throwable $e)
     {
 
-        if($e instanceof Exception) {
+        if($e instanceof \Exception) {
             echo static::$kernel->launchAction('Error', 'error404', [$e]);
         }else{
             echo static::$kernel->launchAction('Error', 'error500', [$e]);

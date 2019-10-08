@@ -10,12 +10,15 @@ class Api extends \App\Controller
 
 	public function saveMessage ()
     {
+    	
     	if($this->is_ajax()) {
 	    	if(isset($_POST) && $_POST) {
 	    		if($_POST["data"] && $_POST['author_id']) {
-	    			$this->message = new Message();
-	    			$this->message->saveMessage($_POST['data'], $_POST['author_id']);
-					 return json_encode(true);
+	    			$message = addslashes(htmlspecialchars(strip_tags($_POST["data"])));
+	    			if($message != "") {
+	    				$this->message = new Message();
+	    				$this->message->saveMessage($message, $_POST['author_id']);
+	    			}
 	    		}
 	    		else
 	    			return false;

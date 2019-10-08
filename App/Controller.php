@@ -6,18 +6,18 @@ namespace App;
 class Controller
 {
 
-    public $layoutFile = 'Views/Layout.php';
+    private static  $layoutFile = 'Layout.php';
 
-    public function renderLayout ($body)
+    public static function renderLayout ($body)
     {
 
         ob_start();
-        require ROOTPATH.DIRECTORY_SEPARATOR.'Views'.DIRECTORY_SEPARATOR.'Layout'.DIRECTORY_SEPARATOR."Layout.php";
+        require ROOTPATH.DIRECTORY_SEPARATOR.'Views'.DIRECTORY_SEPARATOR.'Layout'.DIRECTORY_SEPARATOR.self::$layoutFile;
         return ob_get_clean();
 
     }
 
-    public function render ($viewName, array $params = [])
+    public static function render ($viewName, array $params = [])
     {
 
         $viewFile = ROOTPATH.DIRECTORY_SEPARATOR.'Views'.DIRECTORY_SEPARATOR.$viewName.'.php';
@@ -29,7 +29,7 @@ class Controller
         print_r($params);
         $body = ob_get_clean();
         ob_end_clean();
-        return $this->renderLayout($body);
+        return self::renderLayout($body);
 
     }
 

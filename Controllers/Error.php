@@ -3,11 +3,12 @@
 namespace Controllers;
 
 
-class Error extends \App\Controller
+class Error extends \Exception
 {
-	public function error404 ($params)
+
+	public function error404 ()
     {
-    	echo "404. Not found";
+    	return \Controllers\Home::renderError404();
     }
 
 }
